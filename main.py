@@ -1,8 +1,10 @@
 from lifestore_file import lifestore_products, lifestore_sales, lifestore_searches
 
-from listas import cantidad_ventas
+from listas import productos_ventas, mas_vendidos, menos_vendidos
 
-print(cantidad_ventas)
+
+
+print(menos_vendidos)
 
 print ('Hello, World!')
 

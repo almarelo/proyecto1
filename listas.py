@@ -7,24 +7,31 @@ lifestore_products = [id_product, name, price, category, stock]
 
 Some new useful lists:
 
-cantidad_ventas = [id_product, total_ventas]
+productos_ventas = [id_product, ventas, refunds, ventas-refunds]
 
+mas_vendidos = [id_product, name, ventas, refunds ]
 """
 
 
 
 from lifestore_file import lifestore_products, lifestore_sales, lifestore_searches
 
+from operator import itemgetter, attrgetter
 
-cantidad_ventas=[]
+
+productos_ventas=[]
 
 for producto in lifestore_products:
-  contador=0
+  sales=0
+  refunds =0
   for venta in lifestore_sales:
     if producto[0]== venta[1]:
-      contador += 1
-  cantidad_ventas.append([producto[0], contador])
+      sales += 1
+      refunds += venta[4]
+  productos_ventas.append([producto, sales, refunds, sales - refunds])
 
 
 
-mas_vendidos = []
+mas_vendidos = sorted(productos_ventas, key=itemgetter(3), reverse=True)[0:10]
+
+menos_vendidos = sorted(productos_ventas, key=itemgetter(3))[0:10]
